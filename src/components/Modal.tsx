@@ -7,6 +7,8 @@ import {
   getDateFromCCExp,
   getFormattedCardNumber,
 } from "../utilties/stringUtilities";
+import { BiLeftArrowAlt } from "react-icons/bi";
+import { AiOutlineClose } from "react-icons/ai";
 
 interface ModalProps {
   readonly isOpen: boolean;
@@ -84,8 +86,19 @@ export const Modal: React.FC<ModalProps> = ({
         onSubmit={handleSaveCard}
       >
         <div className="add-card-modal__close-button">
-          <button type="button" onClick={onClose}>
-            X
+          <button
+            className="add-card-modal__close-button__x"
+            type="button"
+            onClick={onClose}
+          >
+            <AiOutlineClose />
+          </button>
+          <button
+            className="add-card-modal__close-button__back"
+            type="button"
+            onClick={onClose}
+          >
+            <BiLeftArrowAlt />
           </button>
         </div>
         <h1>Add Card</h1>
@@ -128,7 +141,14 @@ export const Modal: React.FC<ModalProps> = ({
             />
           </label>
         </div>
-        <button type="submit">Add Card</button>
+        <div className="add-card-modal__content__responsive-space" />
+
+        <button
+          className="add-card-modal__content__submit-button"
+          type="submit"
+        >
+          Add Card
+        </button>
       </form>
     </div>
   );

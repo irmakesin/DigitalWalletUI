@@ -10,6 +10,7 @@ export const Title: React.FC<TitleProps> = ({ name, gender }) => {
   const welcomeMessage = React.useMemo(() => {
     const now = new Date();
     const hours = now.getHours();
+    console.log(hours);
     if (hours > 6 && hours < 12) {
       return "Good morning";
     } else if (hours >= 12 && hours < 18) {
