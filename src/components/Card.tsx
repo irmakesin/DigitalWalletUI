@@ -17,14 +17,17 @@ export const Card: React.FC<CardProps> = ({ card, userName }) => {
     return `${monthString}/${yearString}`;
   };
 
+  const getCardLogo = React.useCallback(() => {
+    if (card.cardNumber.startsWith("5")) {
+      return "https://logos-download.com/wp-content/uploads/2016/03/Mastercard_Logo_2019-1536x949.png";
+    }
+    return "https://marka-logo.com/wp-content/uploads/2020/04/Visa-Logo.png";
+  }, [card.cardNumber]);
+
   return (
     <div className="card">
       <div className="card__logo-container">
-        <img
-          className="card__logo"
-          src="	https://logos-download.com/wp-content/uploads/2016/03/Mastercard_Logo_2019-1536x949.png"
-          alt="logo"
-        />
+        <img className="card__logo" src={getCardLogo()} alt="logo" />
       </div>
       <div className="card__number">{card.cardNumber.replaceAll("-", " ")}</div>
 

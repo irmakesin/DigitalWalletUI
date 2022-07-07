@@ -1,14 +1,19 @@
 import * as React from "react";
 import "../styles/transactions.scss";
+import { ICurrencyExchangeRates } from "../types/ICurrencyExchangeRates";
 import { IUser } from "../types/IUser";
 import { CurrencyDropdown } from "./CurrencyDropdown";
 import { Transaction } from "./Transaction";
 
 interface TransactionsProps {
   readonly selectedCard: IUser["cards"][0];
+  readonly currencies: ICurrencyExchangeRates;
 }
 
-export const Transactions: React.FC<TransactionsProps> = ({ selectedCard }) => {
+export const Transactions: React.FC<TransactionsProps> = ({
+  selectedCard,
+  currencies,
+}) => {
   const [selectedCurrency, setSelectedCurrency] = React.useState("USD");
 
   const getCurrentCurrencySymbol = React.useCallback((): string => {
@@ -22,12 +27,26 @@ export const Transactions: React.FC<TransactionsProps> = ({ selectedCard }) => {
     return symbols[selectedCurrency];
   }, [selectedCurrency]);
 
-  const getFormattedMoney = React.useCallback((): string => {
-    const [main, sub] = selectedCard.amount.split(".");
-    const formattedMain = main?.match(/.{1,3}/g)?.join(".") || main;
+  const getMoneyByCurrency = React.useCallback(() => {
+    if (selectedCurrency === "USD") {
+      return selectedCard.amount;
+    } else if (selectedCurrency === "EUR") {
+      return +selectedCard.amount * +currencies.usdToEuro;
+    } else if (selectedCurrency === "CHF") {
+      return +selectedCard.amount * +currencies.usdToChf;
+    }
+    return +selectedCard.amount * +currencies.usdToTry;
+  }, [selectedCurrency, selectedCard, currencies]);
 
-    return `${formattedMain},${sub}${getCurrentCurrencySymbol()}`;
-  }, [selectedCard.amount, getCurrentCurrencySymbol]);
+  const getFormattedMoney = React.useCallback((): string => {
+    const money = getMoneyByCurrency().toString();
+
+    const formattedMain = Intl.NumberFormat(undefined, {
+      currencySign: "accounting",
+    }).format(+money)
+
+    return `${formattedMain}${getCurrentCurrencySymbol()}`;
+  }, [getCurrentCurrencySymbol, getMoneyByCurrency]);
 
   const handleChangeCurrency = React.useCallback(
     (currency: string): void => {
