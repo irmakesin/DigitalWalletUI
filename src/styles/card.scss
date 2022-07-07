@@ -1,0 +1,57 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(106.15deg, #042843 1.98%, #726E9E 98%);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    color: #fff;
+    width:  100%;
+    font-size: 1.5rem;
+    
+    @media (min-width: 728px) {
+        font-size: 1.5rem;
+    }
+
+
+    &__logo-container {
+        margin: .5rem 0;
+    }
+
+    &__logo {
+        width: 5rem;
+        height: auto;
+        max-width: 100%;
+    }
+
+    &__number {
+        letter-spacing: 6px;
+        font-weight: 500;
+        margin: 1rem 0;
+    }
+
+    &__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+
+        &__two-line{
+            display: flex;
+            flex-direction: column;
+            text-transform: uppercase;
+
+            &__title{
+                font-size: 1rem;
+                opacity: .7;
+                letter-spacing: .5px;
+                margin-bottom: .1rem;
+                font-weight: 400;
+            }
+
+            &__value{
+                font-size: 1.3rem;
+                font-weight: 500;
+            }
+        }
+    }
+}

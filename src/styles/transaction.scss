@@ -1,0 +1,64 @@
+.transaction-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+
+
+    &__bold-text{
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #273240;
+        text-transform: capitalize;
+    }
+    &__light-text{
+        color: #273240;
+        opacity: 0.5;
+        text-transform: capitalize;
+    }
+
+    &__flex-box{
+        display: flex;
+        flex-direction: column;
+        gap:.2rem;
+
+        &.right{
+            align-items: flex-end;
+        }
+    }
+
+    
+
+    &__left {
+        display: flex;
+        align-items: center;
+        gap:1rem;
+
+        &__icon{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 1rem;
+
+            & > svg {
+                font-size: 1.5rem;
+            }
+
+            &.grocery{
+                background-color: rgba(50, 167, 226, 0.1);
+            }
+            &.entertainment{
+                background-color: rgba(181, 72, 198, .1);
+            }
+            &.equipment{
+                background-color: rgba(255, 135, 0, .1);
+            }
+        }
+
+       
+    }
+
+}

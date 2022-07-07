@@ -1,0 +1,38 @@
+.cards {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-x: scroll;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+
+    @media (min-width: 728px) {
+        flex-direction: column;
+        background-color: #fff;
+        padding: 2rem;
+        align-items: unset;
+        width: 100%;
+        min-width: 30rem;
+        height: unset;
+        overflow-y: scroll;
+        min-height: calc(100vh - 12rem);
+    }
+
+    &__title{
+        display:none;
+        font-size: 2rem;
+        text-align: left;
+        @media (min-width: 728px) {
+            display: block;
+        }
+    }
+
+}
+
+.cards::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}

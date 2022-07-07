@@ -1,0 +1,51 @@
+.dropdown-container{
+    position: relative;
+    display: inline-block;
+    
+    &__button{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px .5rem;
+        width: 100px;
+        &:hover{
+            cursor: pointer;
+        }
+
+        & > svg.active {
+            transform: rotate(180deg);
+         }
+            
+            & > svg {
+            transition: all .3s ease-in-out;
+        }
+    }
+
+    &__dropdown{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px;
+        z-index: 1;
+        transform: scale(0);
+        transition: all .3s ease-in-out;
+        transform-origin: top;
+        &.active{
+            transform: scale(1);
+        }
+
+        &__item {
+            padding: .5rem;
+            &:hover{
+                background-color: #ccc;
+                cursor: pointer;
+            }
+        }
+    }
+}
